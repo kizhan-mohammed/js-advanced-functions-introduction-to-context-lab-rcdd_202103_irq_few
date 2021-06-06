@@ -25,10 +25,10 @@ const createTimeInEvent = (obj, date) =>{
     type: "TimeIn",
     hour: parseInt(date[1]),
     date: date[0],
-  }
+  };
   obj.timeInEvents.push(newTimeInEvent);
   return obj;
-}
+};
 
 const createTimeOutEvent = (obj, date) =>{
   date = date.split(" ");
@@ -36,21 +36,21 @@ const createTimeOutEvent = (obj, date) =>{
     type: "TimeOut",
     hour: parseInt(date[1]),
     date: date[0],
-  }
+  };
   obj.timeOutEvents.push(newTimeOutEvent);
   return obj;
-}
+};
 
 const hoursWorkedOnDate = (obj, date) =>{
   const timeOutWork = obj.timeOutEvents.find(timeOut => timeOut.date == date);
   const timeInWork = obj.timeInEvents.find(timeOut => timeOut.date == date);
   const hoursWorked = (timeOutWork.hour - timeInWork.hour)/100;
   return hoursWorked;
-}
+};
 
 const wagesEarnedOnDate = (obj, date) =>{
   return hoursWorkedOnDate(obj, date)*obj.payPerHour;
-}
+};
 
 const allWagesFor = employee  => {
   let wagesEarned = 0;
@@ -58,18 +58,18 @@ const allWagesFor = employee  => {
     wagesEarned += wagesEarnedOnDate(employee , wage.date);
   });
   return wagesEarned;
-}
+};
 
 const findEmployeeByFirstName = (srcArray, firstName) =>{
   return srcArray.find(employee=> {
     if(employee.firstName == firstName) return true;
-  })
-}
+  });
+};
 
 const calculatePayroll = array =>{
   let sum = 0;
   array.forEach(employee => {
     sum += allWagesFor(employee);
-  })
+  });
   return sum;
-}
+};
