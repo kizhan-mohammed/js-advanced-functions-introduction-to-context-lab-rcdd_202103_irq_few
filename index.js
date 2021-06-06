@@ -61,15 +61,15 @@ const allWagesFor = employee  => {
 }
 
 const findEmployeeByFirstName = (srcArray, firstName) =>{
-  return srcArray.find(employeeRecord => {
-    if(employeeRecord.firstName == firstName) return true;
+  return srcArray.find(employee=> {
+    if(employee.firstName == firstName) return true;
   })
 }
 
-function calculatePayroll(array){
-  let sumOfPay = 0;
-  array.forEach(employeeRecord => {
-    sumOfPay += allWagesFor(employeeRecord);
+const calculatePayroll = array =>{
+  let sum = 0;
+  array.forEach(employee => {
+    sum += allWagesFor(employee);
   })
-  return sumOfPay;
+  return sum;
 }
